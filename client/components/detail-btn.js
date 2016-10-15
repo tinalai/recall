@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import FriendDetail from './friend-detail';
+
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import {List, ListItem} from 'material-ui/List';
@@ -37,6 +39,14 @@ export default class DetailBtn extends Component {
     return (
       <div>
         <RaisedButton label="Detail" onTouchTap={this.handleOpen} />
+        <Dialog
+          title={this.props.currentFriend}
+          modal={false}
+          open={this.state.open}
+          onRequestClose={this.handleClose}
+        >
+        <FriendDetail {...this.props}/>
+        </Dialog>
       </div>
     )
   }
