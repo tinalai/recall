@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Chat from './chat';
+import Friend from './friend';
 import io from 'socket.io-client';
 
 import { grey100, grey300, grey500, white, darkBlack, fullBlack } from 'material-ui/styles/colors';
@@ -45,7 +45,7 @@ export default class App extends Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
 
     // Main socket connection
-    socket.on('connection', console.log('Connected'));
+    socket.on('connection', console.log('Connected!'));
   }
 
   onInputChange(event) {
@@ -68,7 +68,7 @@ export default class App extends Component {
           <form onSubmit={this.onFormSubmit}>
             <TextField
               value={this.state.friend}
-              hintText="insert friends"
+              hintText="insert friend"
               inputStyle={{fontSize: '175%'}}
               fullWidth={true}
               onChange={this.onInputChange}
@@ -77,10 +77,10 @@ export default class App extends Component {
             <RaisedButton
               style={{marginLeft: '50px', marginTop: '25px'}}
               type="submit"
-              label="Submit"
+              label="Add Friend"
             />
           </form>
-        <Chat socket={socket} {...this.props} />
+        <Friend socket={socket} {...this.props} />
         </div>
       </MuiThemeProvider>
     );

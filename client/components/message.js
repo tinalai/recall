@@ -49,11 +49,13 @@ export default class Message extends Component {
   }
 
   renderMessages(data) {
+    console.log(data)
+    console.log(Math.floor(Math.random() * this.state.receive.length) * 3 + 1)
     // Refactor later - if localStorage matches user, a different color
     if (this.props.socket.id === localStorage.profile) {
       return (
         <ListItem
-          key={data}
+          key={Math.floor(Math.random() * this.state.receive.length) * 3 + 1}
           style={{backgroundColor: '#F50057'}}
           primaryText={data}
           disabled={true}
@@ -71,6 +73,7 @@ export default class Message extends Component {
   }
 
   render() {
+    console.log(this.props)
     const actions = [
       <form onSubmit={this.onFormSubmit}>
         <TextField
@@ -89,7 +92,7 @@ export default class Message extends Component {
     ];
     return (
       <div>
-        <RaisedButton label="Chat" onTouchTap={this.handleOpen} />
+        <RaisedButton label="Details" onTouchTap={this.handleOpen} />
         <Dialog
           title={this.props.currentFriend}
           actions={actions}

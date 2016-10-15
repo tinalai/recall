@@ -1,13 +1,16 @@
 const friends = {};
+const friendIndex = [];
 
 function addFriend(data) {
   console.log(data)
   if (!friends[data]) {
     friends[data] = [];
+    friendIndex.push(data);
   } else {
     console.log('This friend already exists');
   }
-  console.log(friends)
+  console.log(friends);
+  console.log(friendIndex);
 }
 
 function addMessage(friend, message) {
@@ -38,7 +41,16 @@ module.exports = (io) => {
 
     socket.on('addMessage', (friend, data) => {
       addMessage(friend, data);
-      io.emit('newMessage', friends)
+      io.emit('newMessage', friends);
+
+      // Server sends message to client
+      setInterval(function() {
+          if (friendIndex.length) {
+            var index = Math.floor(Math.random() * friendIndex.length);
+            addMessage(friendIndex[index], 'Server sayz hi')
+          }
+        socket.emit('newMessage', friends);
+      }, 15000)
     });
 
     socket.on('disconnect', () => {

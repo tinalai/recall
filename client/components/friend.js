@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import Message from './message';
+import DetailBtn from './detail-btn';
 
 import {List, ListItem} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
@@ -16,27 +16,25 @@ const style = {
   cursor: 'pointer',
 };
 
-class Chat extends Component {
+class Detail extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = { users: [] }
-    this.renderUsers = this.renderUsers.bind(this);
+    this.renderFriend = this.renderFriend.bind(this);
 
     let friend = '';
 
       this.props.socket.on('addedFriend', (data) => {
       this.setState({ users: data });
-      this.props.addFriend(data);
 
       // Set localStorage profile to user's socket ID
       localStorage.setItem('profile', this.props.socket.id);
     });
   }
 
-  renderUsers(data) {
-    console.log(data)
+  renderFriend(data) {
     return (
       <ListItem key={data}
         pimaryText={data}
@@ -54,7 +52,7 @@ class Chat extends Component {
         }
         rightIcon={
           <RaisedButton style={{marginRight: '50px'}}>
-            <Message currentFriend={data.join(' ')} {...this.props}/>
+            <DetailBtn currentFriend={data.join(' ')} {...this.props}/>
           </RaisedButton>
         }
       />
@@ -64,7 +62,7 @@ class Chat extends Component {
   render() {
     return (
       <List>
-        {this.state.users.map(this.renderUsers)}
+        {this.state.users.map(this.renderFriend)}
       </List>
     )
   }
@@ -74,4 +72,4 @@ function mapStateToProps({ friend }) {
   return { friend };
 }
 
-export default connect(mapStateToProps)(Chat);
+export default connect(mapStateToProps)(Detail);
