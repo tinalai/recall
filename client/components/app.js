@@ -2,35 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import Friend from './friend';
 import AddFriend from './add-friend';
 import SearchFriend from './search';
+import Footer from './footer';
 import io from 'socket.io-client';
-
-import { grey100, grey300, grey500, white, darkBlack, fullBlack } from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Search from 'material-ui/svg-icons/action/search';
-
-// MuiTheme Colors
-export const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color: '#607D8B',
-    primary2Color: '#455A64',
-    primary3Color: '#90A4AE',
-    accent1Color: '#F50057',
-    accent2Color: grey100,
-    accent3Color: grey500,
-    textColor: darkBlack,
-    alternateTextColor: white,
-    canvasColor: white,
-    borderColor: grey300,
-    pickerHeaderColor: '#607D8B',
-    shadowColor: fullBlack,
-  },
-});
 
 const title = {
   marginLeft: '15%',
@@ -61,7 +40,7 @@ export default class App extends Component {
   }
 
   setFloatingAction() {
-    if(!this.state.search) {
+    if(this.state.search) {
       return (
         <ContentAdd />
       )
@@ -88,16 +67,25 @@ export default class App extends Component {
   // e.g. 'sara gee'
   render() {
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <div style={{overflow: 'hidden'}}>
-          <h1 style={title}> recall. </h1>
-          <FloatingActionButton onClick={this.setInput}>
-            {this.setFloatingAction()}
-          </FloatingActionButton>
-          {this.renderInput()}
-          <Friend socket={socket} {...this.props} />
+      <div>
+        <h1 style={title}> recall. </h1>
+        <div 
+          style={{
+            top: 50,
+            position: 'fixed',
+            zIndex: '999',
+            width: '100%' 
+        }}>
+        <FloatingActionButton onClick={this.setInput}
+          style={{marginLeft: '90%'}}
+        >
+          {this.setFloatingAction()}
+        </FloatingActionButton>
+        {this.renderInput()}
         </div>
-      </MuiThemeProvider>
+        <Friend socket={socket} {...this.props} />
+        <Footer />
+      </div>
     );
   }
 }

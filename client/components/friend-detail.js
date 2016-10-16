@@ -7,6 +7,7 @@ import Subheader from 'material-ui/Subheader';
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
 import CommunicationEmail from 'material-ui/svg-icons/communication/email';
 import CommunicationCall from 'material-ui/svg-icons/communication/call';
+import Cake from 'material-ui/svg-icons/social/cake';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -36,20 +37,21 @@ export default class FriendDetail extends Component {
             />
           <ListItem
             primaryText="9/13/1990"
-            rightIcon={<CommunicationChatBubble />}
-          />
-          <ListItem
-            insetChildren={true}
-            primaryText="Leave a note"
-            rightIcon={<CommunicationChatBubble />}
+            rightIcon={<Cake />}
           />
         </List>
-        <RaisedButton
-          backgroundColor="#a4c639"
-          fullWidth={true}
-          onClick={this.editClicked}
-          label="Edit"
-        />
+        <div style={{width: '100%'}}>
+          <RaisedButton
+            style={{width: '100%', marginBottom: '10px'}}
+            label="Leave a Note"
+          />
+          <RaisedButton
+            backgroundColor="#a4c639"
+            style={{width: '100%'}}
+            onClick={this.editClicked}
+            label="Edit"
+          />
+        </div>
       </div>
     )
   }
