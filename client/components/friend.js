@@ -37,8 +37,7 @@ class Detail extends Component {
   renderFriend(data) {
     return (
       <ListItem key={data}
-        pimaryText={data}
-        style={{marginTop: 10, padding: 50}}
+        style={{padding: 30}}
         leftAvatar={
           <Avatar
             style={{left: 10}}
@@ -61,7 +60,7 @@ class Detail extends Component {
 
   render() {
     return (
-      <List>
+      <List style={{paddingTop: 200}}>
         {this.state.users.map(this.renderFriend)}
       </List>
     )

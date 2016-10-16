@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Friend from './friend';
+import Detail from './friend';
 import AddFriend from './add-friend';
 import SearchFriend from './search';
 import Footer from './footer';
@@ -27,7 +27,7 @@ export default class App extends Component {
     this.setInput = this.setInput.bind(this);
     this.renderInput = this.renderInput.bind(this);
     this.setFloatingAction = this.setFloatingAction.bind(this);
-    // Main socket connection
+
     socket.on('connection', console.log('Connected!'));
   }
 
@@ -68,23 +68,23 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <h1 style={title}> recall. </h1>
-        <div 
-          style={{
-            top: 50,
-            position: 'fixed',
-            zIndex: '999',
-            width: '100%' 
-        }}>
-        <FloatingActionButton onClick={this.setInput}
-          style={{marginLeft: '90%'}}
-        >
-          {this.setFloatingAction()}
-        </FloatingActionButton>
-        {this.renderInput()}
+        <div style={{top: 0, 
+          position: 'fixed', 
+          width: '100%'}}>
+          <span style={title}> recall. </span>
+          <FloatingActionButton onClick={this.setInput}
+            style={{marginTop: '-10%', marginLeft: '90%'}}
+          >
+            {this.setFloatingAction()}
+          </FloatingActionButton>
+          {this.renderInput()}
         </div>
-        <Friend socket={socket} {...this.props} />
-        <Footer />
+        <div>
+          <Detail socket={socket} {...this.props} />
+        </div>
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }

@@ -43,6 +43,7 @@ export default class FriendDetail extends Component {
         <div style={{width: '100%'}}>
           <RaisedButton
             style={{width: '100%', marginBottom: '10px'}}
+            onClick={this.editClicked}
             label="Leave a Note"
           />
           <RaisedButton
