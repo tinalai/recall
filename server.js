@@ -10,7 +10,7 @@ app.use(parser.json());
 const location = 'mongodb://localhost/recall';
 mongoose.connect(location);
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('Mongoose is connected');
