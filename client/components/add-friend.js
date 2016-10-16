@@ -1,11 +1,14 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addNewFriend } from '../actions/index';
 
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
-export default class AddFriend extends Component {
+class AddFriend extends Component {
 
   constructor(props) {
     super(props);
@@ -15,13 +18,18 @@ export default class AddFriend extends Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
+  static propTypes = {
+    addNewFriend: PropTypes.func.isRequired,
+  }
+
   onInputChange(event) {
     this.setState({ friend: event.target.value });
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.socket.emit('addFriend', this.state.friend)
+    this.props.addNewFriend(this.state.friend);
+    // this.props.socket.emit('addFriend', this.state.friend)
     this.setState({ friend: '' })
   }
 
@@ -48,3 +56,9 @@ export default class AddFriend extends Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ addNewFriend }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(AddFriend);

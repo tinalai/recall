@@ -1,8 +1,13 @@
 import axios from 'axios';
 import * as types from './action_types';
 
-export function newFriend(nickname, first, last) {
-  const request = axios.post('/api/friends', {nickname: nickname, first: first, last: last});
+export function addNewFriend(name) {
+  console.log(name);
+  const request = axios.post('/api/friends', { nickname: name });
+  return {
+    type: types.ADD_NEW_FRIEND,
+    payload: request
+  };
 }
 
 export function updateMessage(message) {

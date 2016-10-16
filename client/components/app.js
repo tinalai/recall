@@ -28,7 +28,7 @@ export default class App extends Component {
     this.renderInput = this.renderInput.bind(this);
     this.setFloatingAction = this.setFloatingAction.bind(this);
 
-    socket.on('connection', console.log('Connected!'));
+    socket.on('connection');
   }
 
   setInput() {

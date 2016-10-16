@@ -1,1 +1,2 @@
 export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
+export const ADD_NEW_FRIEND = 'ADD_NEW_FRIEND';
