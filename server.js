@@ -7,14 +7,14 @@ const app = express();
 app.use(express.static(__dirname + '/'));
 app.use(parser.json());
 
-const location = 'mongodb://localhost/recall';
-mongoose.connect(location);
+// const location = 'mongodb://localhost/recall';
+// mongoose.connect(location);
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('Mongoose is connected');
-});
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {
+//   console.log('Mongoose is connected');
+// });
 
 // Routes
 require('./server/config/routes.js')(app, express);

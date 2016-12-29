@@ -5,7 +5,7 @@ var User = new mongoose.Schema({
     nickname: {type: String },
     firstname: { type: String },
     lastname: { type: String },
-    details: [FriendDetails],
+    // details: [FriendDetail],
 },
 {
   timestamps: true

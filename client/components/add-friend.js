@@ -28,8 +28,8 @@ class AddFriend extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.addNewFriend(this.state.friend);
-    // this.props.socket.emit('addFriend', this.state.friend)
+    // this.props.addNewFriend(this.state.friend);
+    this.props.socket.emit('addFriend', this.state.friend)
     this.setState({ friend: '' })
   }
 
@@ -37,7 +37,7 @@ class AddFriend extends Component {
   // e.g. 'sara gee'
   render() {
     return (
-      <form 
+      <form
         style={{marginLeft: '50%'}}
         onSubmit={this.onFormSubmit}>
         <TextField
